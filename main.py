@@ -62,27 +62,10 @@ class Doc(collections.Mapping):
 		return self.doc['history']
 
 	def old_doc(self, index):
-		"""calculate the state of the document at the given index"""
+		"""calculate the state of the document at the given index. if the
+		requested revision is too high, it will just return the current
+		document"""
 		patches = []
 		for i in range(len(self.doc['history']), index, -1):
 			patches += deepcopy(self.doc['history'][i - 1]['patch'])
 		return jsonpatch.apply_patch(self.doc['current'], patches)
-
-
-test_doc = Doc()
-test_doc.commit({"blah": 42, "meh": "foo"})
-test_doc.commit({"blah": 43, "meh": "foo"})
-test_doc.commit({"blah": 43})
-test_doc.commit({"blah": 43, 'hoom': [1, 2, 3]})
-test_doc.commit({"blah": 43, 'hoom': [3]})
-test_doc.commit({})
-
-print test_doc.history()
-
-print test_doc.old_doc(0)
-print test_doc.old_doc(1)
-print test_doc.old_doc(2)
-print test_doc.old_doc(3)
-print test_doc.old_doc(4)
-print test_doc.old_doc(5)
-print test_doc.old_doc(7)

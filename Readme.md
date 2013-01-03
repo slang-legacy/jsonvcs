@@ -22,7 +22,7 @@ revisions stored in format specified by json patch http://tools.ietf.org/id/draf
 database agnostic... you can use any way of storing your JSON.
 
 #anatomy of a version controlled doc
-see the [specification](./docs/document.schema.json), written in JSON-schema
+see the [specification](./json-vcs/blob/master/docs/document.schema.json), written in JSON-schema
 
 #what it doesn't do
 json-vcs isn't good at tracking revisions to large chunks of text. If you want to use it for this, split your text into an array of lines. json_vcs is made to track revisions to structured data, but doesn't look inside of basic datatypes like strings, or integers.

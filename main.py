@@ -2,6 +2,7 @@
 import jsonpatch
 from simplejson import dumps
 import collections
+from copy import deepcopy
 
 
 class Doc(collections.Mapping):
@@ -51,7 +52,7 @@ class Doc(collections.Mapping):
 		doc and a patch will be stored in the history which can be used to
 		calculate the previous state of the document"""
 		self.doc['history'].append({
-			'patch': jsonpatch.make_patch(self.doc['current'], new_doc).patch,
+			'patch': jsonpatch.make_patch(new_doc, self.doc['current']).patch,
 			'meta': meta_data
 		})
 		self.doc['current'] = new_doc
@@ -63,17 +64,25 @@ class Doc(collections.Mapping):
 	def old_doc(self, index):
 		"""calculate the state of the document at the given index"""
 		patches = []
-		for i in range(len(self.doc['history']), index):
-			patches += self.doc['history'][i]
-
+		for i in range(len(self.doc['history']), index, -1):
+			patches += deepcopy(self.doc['history'][i - 1]['patch'])
 		return jsonpatch.apply_patch(self.doc['current'], patches)
-		#use patches to revert the doc till it's at the requested index. don't
-		#save the changes, just return the resulting doc
 
 
 test_doc = Doc()
-print test_doc
-
 test_doc.commit({"blah": 42, "meh": "foo"})
 test_doc.commit({"blah": 43, "meh": "foo"})
-print test_doc
+test_doc.commit({"blah": 43})
+test_doc.commit({"blah": 43, 'hoom': [1, 2, 3]})
+test_doc.commit({"blah": 43, 'hoom': [3]})
+test_doc.commit({})
+
+print test_doc.history()
+
+print test_doc.old_doc(0)
+print test_doc.old_doc(1)
+print test_doc.old_doc(2)
+print test_doc.old_doc(3)
+print test_doc.old_doc(4)
+print test_doc.old_doc(5)
+print test_doc.old_doc(7)

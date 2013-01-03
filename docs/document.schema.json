@@ -2,7 +2,7 @@
 	"description": "represents a version controlled doc and contains both the current, and previous states of the data being tracked",
 	"type": "object",
 	"properties": {
-		"revisions": {
+		"history": {
 			"type": "array",
 			"required": true,
 			"description": "an array of patches, each representing a revision to the document. applying the patches, in order, brings you back through all the different versions of the doc until you reach the original. applying the last patch to the current document is like 'hitting the undo key'",
@@ -22,10 +22,11 @@
 				"additionalProperties": false
 			}
 		},
-		"doc":{
+		"current":{
 			"type": "object",
 			"description": "Holds the current state of the data being tracked",
 			"required": true
 		}
-	}
+	},
+	"additionalProperties": false
 }

@@ -1,4 +1,4 @@
-#json-vcs
+#jsonvcs
 
 docs can be compressed by just removing entries from the beginning of the history array
 
@@ -7,7 +7,6 @@ making a revision:
  - determine what needs to be changed in the new doc to get back to the old doc... save that as a diff (append obj to diff array along with diff metadata)
  - replace the old doc w/ the new one
  - save to db
-
 
 maybe add caching for docs so old versions of the doc can be stored w/out needing to be calculated... not really needed yet since revisions would be minimal on the CSD
 

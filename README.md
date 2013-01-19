@@ -10,6 +10,9 @@ making a revision:
 
 maybe add caching for docs so old versions of the doc can be stored w/out needing to be calculated... not really needed yet since revisions would be minimal on the CSD
 
+##install
+`pip install jsonvcs`
+
 ##how it works
 versions stored in one document... lightweight versioning w/ only 1 doc being manipulated
 "reverse diffs" - the current state of the doc is readily avaliable, compiling all the diffs on to the current version (starting from the most recent), brings you back to the original doc

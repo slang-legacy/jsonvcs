@@ -1,16 +1,15 @@
 from distutils.core import setup
 
 setup(
-	name='mongo_vcs',
+	name='json-vcs',
+	packages=['json-vcs'],
+	py_modules=['main'],
 	version='0.0.1',
 	author='Sean Lang',
 	author_email='slang800@gmail.com',
-	packages=['mongo_vcs'],
-	scripts=[],
-	url='',
+	url='https://github.com/slang800/json-vcs',
 	license='LICENSE',
-	description='version control for documents in MongoDB',
-	long_description=open('README.rst').read(),
+	description='version control for structured documents',
 	install_requires=[
 		"jsonpatch >= 0.11",
 	],

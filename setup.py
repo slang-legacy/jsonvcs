@@ -1,9 +1,8 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
 	name='json-vcs',
 	packages=['json-vcs'],
-	py_modules=['main'],
 	version='0.0.1',
 	author='Sean Lang',
 	author_email='slang800@gmail.com',

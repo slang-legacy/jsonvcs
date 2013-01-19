@@ -1,4 +1,3 @@
-#import pymongo
 import jsonpatch
 from simplejson import dumps
 import collections

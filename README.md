@@ -1,7 +1,5 @@
 #jsonvcs
 
-docs can be compressed by just removing entries from the beginning of the history array
-
 ##install
 `pip install jsonvcs`
 
